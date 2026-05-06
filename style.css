@@ -1,0 +1,274 @@
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+body{
+  font-family:Arial,Helvetica,sans-serif;
+  min-height:100vh;
+  background:linear-gradient(135deg,#03111d,#071e34,#031525);
+  color:#fff;
+}
+
+.wrap{
+  width:min(1400px,95%);
+  margin:auto;
+  padding:20px 0 40px;
+}
+
+.title{
+  text-align:center;
+  color:#00f7ff;
+  margin-bottom:25px;
+  text-shadow:0 0 15px #00f7ff;
+}
+
+.controls{
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:center;
+  gap:12px;
+  align-items:center;
+  margin-bottom:25px;
+}
+
+/* button style */
+.upload-btn,
+select,
+#startBtn,
+#pauseBtn,
+.icon-btn{
+  border:none;
+  outline:none;
+  cursor:pointer;
+  padding:12px 18px;
+  border-radius:14px;
+  background:#08192d;
+  color:#00f7ff;
+  box-shadow:
+    0 0 0 1px rgba(0,247,255,.35),
+    0 0 16px rgba(0,247,255,.18);
+  transition:.25s;
+}
+
+.upload-btn:hover,
+select:hover,
+#startBtn:hover,
+#pauseBtn:hover,
+.icon-btn:hover{
+  transform:translateY(-2px) scale(1.04);
+  box-shadow:
+    0 0 0 1px rgba(0,247,255,.8),
+    0 0 24px rgba(0,247,255,.45);
+}
+
+.upload-btn:active,
+select:active,
+#startBtn:active,
+#pauseBtn:active,
+.icon-btn:active{
+  transform:scale(.95);
+}
+
+.upload-btn input{
+  display:none;
+}
+
+.timer{
+  padding:12px 18px;
+  border-radius:14px;
+  color:#00f7ff;
+  background:#08192d;
+  box-shadow:
+    0 0 0 1px rgba(0,247,255,.35),
+    0 0 16px rgba(0,247,255,.18);
+}
+
+.audio-box{
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+
+input[type="range"]{
+  width:110px;
+  accent-color:#00f7ff;
+  cursor:pointer;
+}
+
+/* layout */
+.main-layout{
+  display:flex;
+  gap:25px;
+  justify-content:center;
+  align-items:flex-start;
+  flex-wrap:wrap;
+}
+
+.preview-panel{
+  width:min(280px,85vw);
+  text-align:center;
+}
+
+.preview-title{
+  margin-bottom:12px;
+  color:#9cf7ff;
+  font-weight:bold;
+}
+
+#previewImage{
+  width:100%;
+  display:block;
+  border-radius:18px;
+  border:2px solid rgba(0,247,255,.55);
+  box-shadow:0 0 20px rgba(0,247,255,.35);
+}
+
+/* canvas area */
+.game-panel{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  width:min(900px,95vw);
+  min-height:300px;
+}
+
+#gameCanvas{
+  display:block;
+  background:#00131e;
+  border-radius:22px;
+  border:2px solid rgba(0,247,255,.55);
+  box-shadow:0 0 25px rgba(0,247,255,.35);
+  max-width:100%;
+  max-height:80vh;
+}
+
+/* popup */
+.popup{
+  position:fixed;
+  inset:0;
+  display:none;
+  justify-content:center;
+  align-items:center;
+  background:rgba(0,0,0,.85);
+  z-index:999;
+  padding:20px;
+}
+
+.popup.show{
+  display:flex;
+}
+
+.popup-box{
+  position:relative;
+  width:min(520px,95%);
+  background:#071a2d;
+  border-radius:24px;
+  border:2px solid rgba(0,247,255,.5);
+  box-shadow:0 0 35px rgba(0,247,255,.35);
+  padding:30px 20px;
+  text-align:center;
+  overflow:hidden;
+  animation:popupIn .35s ease;
+}
+
+@keyframes popupIn{
+  from{
+    opacity:0;
+    transform:scale(.7);
+  }
+  to{
+    opacity:1;
+    transform:scale(1);
+  }
+}
+
+.popup-emoji{
+  position:relative;
+  z-index:2;
+  font-size:54px;
+  margin-bottom:10px;
+}
+
+#popupTitle{
+  position:relative;
+  z-index:2;
+  color:#00f7ff;
+  margin-bottom:15px;
+  text-shadow:0 0 12px #00f7ff;
+}
+
+#finalImage{
+  position:relative;
+  z-index:2;
+  width:min(240px,70%);
+  border-radius:16px;
+  border:2px solid rgba(0,247,255,.5);
+  margin-bottom:15px;
+}
+
+#score{
+  position:relative;
+  z-index:2;
+  font-size:20px;
+  margin-bottom:20px;
+}
+
+#closePopup{
+  position:relative;
+  z-index:2;
+  border:none;
+  cursor:pointer;
+  padding:12px 24px;
+  border-radius:14px;
+  background:#00f7ff;
+  color:#00131f;
+  font-weight:bold;
+  transition:.25s;
+}
+
+#closePopup:hover{
+  transform:scale(1.06);
+}
+
+#confettiCanvas{
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  z-index:1;
+}
+
+/* mobile */
+@media(max-width:768px){
+
+  .controls{
+    gap:10px;
+  }
+
+  .upload-btn,
+  select,
+  #startBtn,
+  #pauseBtn,
+  .icon-btn{
+    padding:10px 14px;
+    font-size:14px;
+  }
+
+  .timer{
+    padding:10px 14px;
+    font-size:14px;
+  }
+
+  input[type="range"]{
+    width:80px;
+  }
+
+  .main-layout{
+    gap:20px;
+  }
+
+  .preview-panel{
+    width:min(240px,75vw);
+  }
+}
