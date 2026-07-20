@@ -451,7 +451,14 @@ function showPopup(win){
     playSfx(soundWin);
     startConfetti();
 
-  }else{
+    // Sau 2 giây tự chơi ván mới
+    setTimeout(()=>{
+      if(popup.classList.contains("show")){
+        nextGame();
+      }
+    },2000);
+
+}else{
 
     popupEmoji.textContent = "⏱";
     popupTitle.textContent = "Rất Tiếc Bạn Đã Hết Thời Gian";
@@ -462,11 +469,22 @@ function showPopup(win){
   }
 }
 
-closePopup.addEventListener("click",()=>{
+function nextGame(){
+
   popup.classList.remove("show");
   stopConfetti();
+
   bgMusic.volume = bgMuted ? 0 : bgLevel;
-});
+
+  // reset trạng thái
+  selected = null;
+  gameFinished = false;
+
+  // bắt đầu ván mới
+  startGame();
+}
+
+closePopup.addEventListener("click", nextGame);
 
 // ================= DRAG MOUSE =================
 canvas.addEventListener("mousedown",e=>{
